@@ -4,7 +4,6 @@ public class Pegawai {
     private int id;
     private String nama;
     private String jabatan;
-    private int notelepon;
     private String username;
     private String password;
 
@@ -30,14 +29,6 @@ public class Pegawai {
 
     public void setJabatan(String jabatan) {
         this.jabatan = jabatan;
-    }
-
-    public int getNotelepon() {
-        return notelepon;
-    }
-
-    public void setNotelepon(int notelepon) {
-        this.notelepon = notelepon;
     }
 
     public String getUsername() {
