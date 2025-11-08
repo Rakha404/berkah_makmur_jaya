@@ -1,7 +1,8 @@
 
 package Bmj;
 
-import Bmj.panels.ManageProducts;
+import Bmj.dialogs.Profile;
+import Bmj.panels.ManageMotor;
 import Bmj.util.Pegawai;
 import Bmj.panels.ManageUser;
 import java.awt.BorderLayout;
@@ -68,6 +69,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
         btnProfile.setForeground(new java.awt.Color(0, 102, 255));
         btnProfile.setText("Profile");
         btnProfile.setBorder(null);
+        btnProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProfileActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 3, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 255));
@@ -194,8 +200,13 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        AddViews(new ManageProducts());
+        AddViews(new ManageMotor());
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
+       Profile pl = new Profile(null,true);
+        pl.setVisible(true);
+    }//GEN-LAST:event_btnProfileActionPerformed
 
    
     public static void main(String args[]) {

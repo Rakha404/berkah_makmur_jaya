@@ -3,6 +3,7 @@ package Bmj;
 
 import Bmj.util.Koneksi;
 import Bmj.util.Pegawai;
+import Bmj.util.User;
 import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,7 +20,6 @@ public class LoginPage extends javax.swing.JFrame {
      */
     public LoginPage() {
         initComponents();
-        
         this.setExtendedState(Frame.MAXIMIZED_BOTH);
         this.setResizable(true);
         
@@ -43,6 +43,7 @@ public class LoginPage extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         jLabel4.setText("jLabel4");
@@ -50,7 +51,7 @@ public class LoginPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
         setPreferredSize(new java.awt.Dimension(1500, 1200));
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1920, 1080));
@@ -62,16 +63,18 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Username");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(170, 140, 100, 25);
+        jLabel1.setBounds(160, 120, 100, 25);
 
+        txtUsername.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsernameActionPerformed(evt);
             }
         });
         jPanel2.add(txtUsername);
-        txtUsername.setBounds(270, 130, 240, 50);
+        txtUsername.setBounds(270, 110, 240, 50);
 
+        txtPassword.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
@@ -80,8 +83,9 @@ public class LoginPage extends javax.swing.JFrame {
         jPanel2.add(txtPassword);
         txtPassword.setBounds(270, 190, 240, 50);
 
-        btnLogin.setBackground(new java.awt.Color(255, 204, 0));
+        btnLogin.setBackground(new java.awt.Color(0, 0, 0));
         btnLogin.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 24)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("LOGIN");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,11 +98,14 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Password");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(170, 200, 100, 25);
+        jLabel2.setBounds(160, 200, 100, 25);
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 720, 340));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/BERKAH MAKMUR JAYA 1280.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bmjDepan.png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, -160, 1330, 650));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/awan2.gif"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
 
         getContentPane().add(jPanel1);
@@ -140,6 +147,7 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField txtPassword;
@@ -167,6 +175,12 @@ public class LoginPage extends javax.swing.JFrame {
                 Pg.setJabatan(RS.getString("jabatan"));
                 Pg.setUsername(RS.getString("username"));
                 Pg.setPassword(RS.getString("password"));
+                
+                User.setId(RS.getInt("id_pegawai"));
+                User.setNama(RS.getString("nama"));
+                User.setJabatan(RS.getString("jabatan"));
+                User.setUsername(RS.getString("username"));
+                User.setPassword(RS.getString("password"));
             }
             if(n>0){
                 this.setVisible(false);

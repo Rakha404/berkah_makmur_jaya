@@ -18,6 +18,7 @@ public class EditUser extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EditUser.class.getName());
 
     public Pegawai P ;
+    
     public EditUser(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -130,7 +131,7 @@ public class EditUser extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-         txtNama.setText(P.getNama());
+        txtNama.setText(P.getNama());
         cmbJabatan.setSelectedItem(P.getJabatan());
         txtUsername.setText(P.getUsername());
         txtPassword.setText(P.getPassword()); 
