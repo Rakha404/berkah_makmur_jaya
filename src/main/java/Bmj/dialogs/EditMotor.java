@@ -4,7 +4,12 @@
  */
 package Bmj.dialogs;
 
+import Bmj.panels.ManageMotor;
+import Bmj.util.Koneksi;
 import Bmj.util.Motor;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
 
  
 public class EditMotor extends javax.swing.JDialog {
@@ -168,7 +173,7 @@ public class EditMotor extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(txtStok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -185,18 +190,10 @@ public class EditMotor extends javax.swing.JDialog {
     }//GEN-LAST:event_txtHargaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        EditDataMotor();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-//        txtIdMtr.setText(M.getId_motor());
-//        cmbMerk.setSelectedItem(M.getMerk());
-//        txtTipe.setText(M.getTipe());
-//        txtTahun.setText(M.getTahun());
-//        txtWarna.setText(M.getWarna());
-//        txtHarga.setText(M.getHarga());
-//        txtStok.setText(M.getStok()); 
-
         if (M != null) { 
 
             txtIdMtr.setText(String.valueOf(M.getId_motor()));
@@ -279,4 +276,58 @@ public class EditMotor extends javax.swing.JDialog {
     private javax.swing.JTextField txtTipe;
     private javax.swing.JTextField txtWarna;
     // End of variables declaration//GEN-END:variables
+    private void EditDataMotor() {
+        try {
+            // 1. Ambil SEMUA data dari form
+            //    (Termasuk yang hilang tadi)
+            String merk = cmbMerk.getSelectedItem().toString();
+            String tipe = txtTipe.getText();
+            String tahun = txtTahun.getText();
+            String warna = txtWarna.getText();
+            String harga = txtHarga.getText();
+            String stok = txtStok.getText();
+
+            // 2. Ambil ID motor (untuk WHERE clause)
+            //    Kita ambil dari textfield (yang sudah di-disable)
+            String id_motor_asli = txtIdMtr.getText();
+
+            // 3. SQL Query yang BENAR:
+            //    Kita TIDAK mengubah id_motor, kita mengubah field LAIN
+            //    BERDASARKAN id_motor
+            String sql = "UPDATE tabel_motor SET "
+                    + "merk=?, " // Parameter 1
+                    + "tipe=?, " // Parameter 2
+                    + "tahun=?, " // Parameter 3
+                    + "warna=?, " // Parameter 4
+                    + "harga=?, " // Parameter 5
+                    + "stok=? " // Parameter 6
+                    + " WHERE "
+                    + "id_motor=?"; // Parameter 7 (untuk KUNCI-nya)
+
+            Connection K = Koneksi.Go();
+            PreparedStatement PS = K.prepareStatement(sql);
+
+            // 4. Set parameter sesuai urutan di SQL
+            PS.setString(1, merk);
+            PS.setString(2, tipe);
+            PS.setString(3, tahun);
+            PS.setString(4, warna);
+            PS.setString(5, harga);
+            PS.setString(6, stok);
+            PS.setString(7, id_motor_asli); // <-- Ini KUNCInya
+
+            PS.executeUpdate();
+
+            ManageMotor.refreshDataMotor("");
+            this.setVisible(false);
+            JOptionPane.showMessageDialog(null, "Data berhasil diupdate");
+
+        } catch (Exception e) {
+            // Tampilkan error kalau gagal
+            JOptionPane.showMessageDialog(null, "Gagal update: " + e.getMessage());
+            e.printStackTrace(); // Ini penting untuk debugging
+        }
+    }
+
+
 }

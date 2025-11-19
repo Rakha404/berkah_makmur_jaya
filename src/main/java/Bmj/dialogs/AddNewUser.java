@@ -228,6 +228,8 @@ public class AddNewUser extends javax.swing.JDialog {
             String jabatan = jcomJabatan.getSelectedItem().toString();
             String username = txtUsername.getText();
             String password = new String(jPasswordField1.getPassword());
+            
+             System.out.println("Username yang akan disimpan: " + username);
 
             String sql = "INSERT INTO pegawai (nama, jabatan, username, password) VALUES (?, ?, ?, ?)";
             java.sql.Connection conn = Bmj.util.Koneksi.Go();
@@ -246,6 +248,7 @@ public class AddNewUser extends javax.swing.JDialog {
         } catch (java.sql.SQLException e) {
             
             // ↓↓↓ TAMBAHKAN POPUP ERROR INI ↓↓↓
+           
             javax.swing.JOptionPane.showMessageDialog(this,
                     "GAGAL MENYIMPAN!\nError: " + e.getMessage(),
                     "Database Error",
@@ -254,6 +257,7 @@ public class AddNewUser extends javax.swing.JDialog {
                     + "Lokasi: " + getClass() + ""
                     + "Method: @simpanData()"
                     + "Error: " + e.getMessage());
+            
         }
     }
 }

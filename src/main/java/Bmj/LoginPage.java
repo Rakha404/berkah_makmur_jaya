@@ -182,12 +182,28 @@ public class LoginPage extends javax.swing.JFrame {
                 User.setUsername(RS.getString("username"));
                 User.setPassword(RS.getString("password"));
             }
-            if(n>0){
-                this.setVisible(false);
-                DashboardAdmin DA = new DashboardAdmin();
-                DA.P = Pg;
-                DA.setVisible(true);
-                DA.setExtendedState(Frame.MAXIMIZED_BOTH);
+            if(n>0){    
+                if (Pg.getJabatan().equals("admin")){
+                   this.setVisible(false);
+                   DashboardAdmin DA = new DashboardAdmin();
+                   DA.P = Pg;
+                   DA.setVisible(true);
+                   DA.setExtendedState(Frame.MAXIMIZED_BOTH);
+                }else if(Pg.getJabatan().equals("kasir")) {
+                   this.setVisible(false);
+                   DashboardKasir DK = new DashboardKasir();
+                   DK.P = Pg;
+                   DK.setVisible(true);
+                   DK.setExtendedState(Frame.MAXIMIZED_BOTH);
+                }else if(Pg.getJabatan().equals("manajer")){
+                   this.setVisible(false);
+                   DashboardManajer DM = new DashboardManajer();
+                   DM.P = Pg;
+                   DM.setVisible(true);
+                   DM.setExtendedState(Frame.MAXIMIZED_BOTH);       
+                }else {
+                    
+                }
             }else{
                 System.err.println("Akun tidak ditemukan");
             }
