@@ -362,25 +362,26 @@ public class Transaksi extends javax.swing.JPanel {
             total_harga
         });
         hitungTotalBelanja();
-        
+
         try {
-        // Ambil angka dari kode sekarang (misal "TRX001" diambil "001")
-        // Asumsi formatnya selalu 3 huruf depan diikuti angka
-        String angkaSaja = inpKode.substring(3); 
-        int urutanBaru = Integer.parseInt(angkaSaja) + 1;
-        
-        // Format balik menjadi TRX + 3 digit angka (misal TRX002)
-        String kodeBaru = "TRX" + String.format("%03d", urutanBaru);
-        
-        // Pasang kode baru ke textfield agar siap untuk barang berikutnya
-        inpKode.setText(kodeBaru);
-        
-    } catch (Exception e) {
-        // Jika format kode kamu bukan TRX... (misal manual ketik "aa1")
-        // Maka biarkan saja, atau buat logika lain.
-        System.out.println("Gagal auto increment kode: " + e.getMessage());
-    }
-        
+            // Ambil angka dari kode sekarang (misal "TRX001" diambil "001")
+            // Asumsi formatnya selalu 3 huruf depan diikuti angka
+            // Ambil teksnya dulu (.getText()), baru dipotong (.substring)
+            String angkaSaja = inpKode.getText().substring(3);
+            int urutanBaru = Integer.parseInt(angkaSaja) + 1;
+
+            // Format balik menjadi TRX + 3 digit angka (misal TRX002)
+            String kodeBaru = "TRX" + String.format("%03d", urutanBaru);
+
+            // Pasang kode baru ke textfield agar siap untuk barang berikutnya
+            inpKode.setText(kodeBaru);
+
+        } catch (Exception e) {
+            // Jika format kode kamu bukan TRX... (misal manual ketik "aa1")
+            // Maka biarkan saja, atau buat logika lain.
+            System.out.println("Gagal auto increment kode: " + e.getMessage());
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
