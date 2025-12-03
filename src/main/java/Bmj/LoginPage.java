@@ -191,7 +191,7 @@ public class LoginPage extends javax.swing.JFrame {
                    DA.setExtendedState(Frame.MAXIMIZED_BOTH);
                 }else if(Pg.getJabatan().equals("kasir")) {
                    this.setVisible(false);
-                   DashboardKasir DK = new DashboardKasir();
+                   DashboardKasirr1 DK = new DashboardKasirr1();
                    DK.P = Pg;
                    DK.setVisible(true);
                    DK.setExtendedState(Frame.MAXIMIZED_BOTH);
