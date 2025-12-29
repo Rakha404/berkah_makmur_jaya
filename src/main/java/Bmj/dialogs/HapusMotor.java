@@ -131,10 +131,10 @@ public class HapusMotor extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             Connection K = Koneksi.Go();
-            String sql = "DELETE FROM tabel_motor WHERE "
+            String sql = "DELETE FROM motor WHERE "
                     + "id_motor=?";
             PreparedStatement PS = K.prepareStatement(sql);
-            PS.setInt(1, HM.getId_motor());
+            PS.setString(1, HM.getId_motor());
             PS.executeUpdate();
             
             //refresh data
@@ -163,6 +163,7 @@ public class HapusMotor extends javax.swing.JDialog {
                 + "<p><b>Tahun:</b> " + HM.getTahun() + "</p>"
                 + "<p><b>Warna:</b> " + HM.getWarna() + "</p>"
                 + "<p><b>Stok:</b> " + HM.getStok() + "</p>"
+                + "<p><b>Gambar:</b> " + HM.getGambar() + "</p>"
                 + "</html>"
         );
     }//GEN-LAST:event_formWindowOpened

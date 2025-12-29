@@ -2,19 +2,21 @@
 package Bmj.util;
 
 public class Motor {
-    private int id_motor;
+    private String id_motor;
     private String merk;
     private String tipe;
     private String tahun;
     private String warna;
-    private String harga;
+    private double harga_beli;
+    private double harga;
     private String stok;
+    private String gambar;
 
-    public int getId_motor() {
+    public String getId_motor() {
         return id_motor;
     }
 
-    public void setId_motor(int id_motor) {
+    public void setId_motor(String id_motor) {
         this.id_motor = id_motor;
     }
 
@@ -50,14 +52,6 @@ public class Motor {
         this.warna = warna;
     }
 
-    public String getHarga() {
-        return harga;
-    }
-
-    public void setHarga(String harga) {
-        this.harga = harga;
-    }
-
     public String getStok() {
         return stok;
     }
@@ -65,4 +59,30 @@ public class Motor {
     public void setStok(String stok) {
         this.stok = stok;
     }
+    
+    public String getGambar() {
+        return gambar;
+    }
+    
+    public void setGambar(String gambar){
+        this.gambar = gambar;
+    }
+
+    public double getHarga_beli() {
+        return harga_beli;
+    }
+
+    public void setHarga_beli(double harga_beli) {
+        this.harga_beli = harga_beli;
+    }
+
+    public double getHarga() {
+        return harga;
+    }
+
+    public void setHarga(double harga) {
+        this.harga = harga;
+    }
+
+  
 }

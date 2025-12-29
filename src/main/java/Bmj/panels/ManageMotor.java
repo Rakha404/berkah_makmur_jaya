@@ -78,7 +78,6 @@ public class ManageMotor extends javax.swing.JPanel {
             }
         });
 
-        txtSearch.setText("jTextField1");
         txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSearchActionPerformed(evt);
@@ -124,13 +123,13 @@ public class ManageMotor extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id_motor", "merk", "tipe", "tahun", "warna", "harga", "stok"
+                "id_motor", "merk", "tipe", "tahun", "warna", "harga_beli", "harga", "stok"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,20 +189,41 @@ public class ManageMotor extends javax.swing.JPanel {
             //ekstraksi data
             Dm = new Motor();
             String IDmtr = jTable1.getValueAt(n, 0).toString();
-            int ID = Integer.valueOf(IDmtr);
+            
             String merk = jTable1.getValueAt(n, 1).toString();
             String tipe = jTable1.getValueAt(n, 2).toString();
             String tahun = jTable1.getValueAt(n, 3).toString();
             String warna = jTable1.getValueAt(n, 4).toString();
-            String harga = jTable1.getValueAt(n, 5).toString();
-            String stok = jTable1.getValueAt(n, 6).toString();
-            Dm.setId_motor(ID);
+            String harga_beli = jTable1.getValueAt(n, 5).toString();
+            String harga = jTable1.getValueAt(n, 6).toString();
+            String stok = jTable1.getValueAt(n, 7).toString();
+            Dm.setId_motor(IDmtr);
             Dm.setMerk(merk);
             Dm.setTipe(tipe);
             Dm.setTahun(tahun);
             Dm.setWarna(warna);
-            Dm.setHarga(harga);
+            Dm.setHarga_beli(Double.parseDouble(harga_beli));
+            Dm.setHarga(Double.parseDouble(harga));
             Dm.setStok(stok);
+            
+            
+            
+            try {
+                java.sql.Connection K = Bmj.util.Koneksi.Go();
+                java.sql.Statement S = K.createStatement();
+                
+                // Cari nama gambar berdasarkan ID
+                String sql = "SELECT gambar FROM motor WHERE id_motor='" + IDmtr + "'";
+                java.sql.ResultSet R = S.executeQuery(sql);
+                
+                if (R.next()) {
+                    String namaFile = R.getString("gambar");
+                    // Simpan info gambar ke objek Motor agar form Edit tahu
+                    Dm.setGambar(namaFile); 
+                }
+            } catch (Exception e) {
+                System.out.println("Gagal ambil gambar: " + e.getMessage());
+            }
 
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -218,8 +238,9 @@ public class ManageMotor extends javax.swing.JPanel {
             EditMotor EM = new EditMotor(null, true);
             EM.M = Dm;
             EM.setVisible(true);
+            refreshDataMotor("");
         }else {
-           
+           javax.swing.JOptionPane.showMessageDialog(this, "Pilih baris dulu!");
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -245,18 +266,23 @@ public static void refreshDataMotor(String w) {
             }
 
             Connection K = Koneksi.Go();
-            String Q = "SELECT * FROM tabel_motor" + w;
+            String Q = "SELECT * FROM motor" + w;
             Statement S = K.createStatement();
             ResultSet R = S.executeQuery(Q);
             while (R.next()) {
-                int id = R.getInt("id_motor");
+                String id = R.getString("id_motor");
                 String merk = R.getString("merk");
                 String tipe = R.getString("tipe");
                 String tahun = R.getString("tahun");
                 String warna = R.getString("warna");
-                String harga = R.getString("harga");
+                double harga_beli = R.getDouble("harga_beli");
+                double harga = R.getDouble("harga");
                 String stok = R.getString("stok");
-                Object[] datamotor = {id, merk, tipe, tahun, warna, harga, stok};
+                
+                String vBeli = String.format("%.0f", harga_beli);
+                String vJual      = String.format("%.0f", harga);
+                
+                Object[] datamotor = {id, merk, tipe, tahun, warna, vBeli, vJual, stok};
                 model.addRow(datamotor);
             }
 
@@ -273,9 +299,12 @@ public static void refreshDataMotor(String w) {
                 + "tipe LIKE '%" + key + "%' OR "
                 + "tahun LIKE '%" + key + "%' OR "
                 + "warna LIKE '%" + key + "%' OR "
+                + "harga_beli LIKE '%" + key + "%' OR "
                 + "harga LIKE '%" + key + "%' OR "
                 + "stok LIKE '%" + key + "%'";
         refreshDataMotor(where);
     }
+    
+    
 
 }
