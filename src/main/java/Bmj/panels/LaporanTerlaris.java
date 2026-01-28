@@ -82,9 +82,9 @@ public class LaporanTerlaris extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(spinnerSampai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(275, 275, 275)
+                .addGap(44, 44, 44)
                 .addComponent(btnCari)
-                .addContainerGap(390, Short.MAX_VALUE))
+                .addContainerGap(621, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

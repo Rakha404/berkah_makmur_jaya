@@ -22,8 +22,4 @@ public class Koneksi {
         }
         return null;
     }
-    
-//    public static void main(String[] args) {
-//        Connection C = Koneksi.Go();
-//    }
 }

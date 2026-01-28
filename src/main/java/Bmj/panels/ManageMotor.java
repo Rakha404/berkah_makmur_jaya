@@ -206,8 +206,6 @@ public class ManageMotor extends javax.swing.JPanel {
             Dm.setHarga(Double.parseDouble(harga));
             Dm.setStok(stok);
             
-            
-            
             try {
                 java.sql.Connection K = Bmj.util.Koneksi.Go();
                 java.sql.Statement S = K.createStatement();

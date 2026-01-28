@@ -53,9 +53,6 @@ public class AddNewMotor extends javax.swing.JDialog {
         btnSimpan = new javax.swing.JButton();
         txtStok = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        txtGambar = new javax.swing.JTextField();
-        lblPreview = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtHargaBeli = new javax.swing.JTextField();
 
@@ -113,21 +110,6 @@ public class AddNewMotor extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setText("STOK");
 
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel9.setText("GAMBAR");
-
-        txtGambar.setEnabled(false);
-        txtGambar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtGambarActionPerformed(evt);
-            }
-        });
-        txtGambar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtGambarKeyReleased(evt);
-            }
-        });
-
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel10.setText("HARGA BELI");
 
@@ -164,22 +146,9 @@ public class AddNewMotor extends javax.swing.JDialog {
                                 .addComponent(txtTahun)
                                 .addComponent(txtWarna)
                                 .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(btnSimpan)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtGambar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(52, 52, 52))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(71, 71, 71))))))
+                .addGap(32, 32, 32)
+                .addComponent(btnSimpan)
+                .addGap(0, 158, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,44 +160,34 @@ public class AddNewMotor extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(txtIdMtr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cmbMerk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtTipe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtTahun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(cmbMerk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtTipe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtTahun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(txtWarna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(txtHargaBeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtGambar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtStok, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(26, 26, 26)))
+                    .addComponent(jLabel6)
+                    .addComponent(txtWarna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(txtHargaBeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtStok, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBatal)
                     .addComponent(btnSimpan))
@@ -238,6 +197,7 @@ public class AddNewMotor extends javax.swing.JDialog {
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtIdMtrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdMtrActionPerformed
@@ -255,14 +215,6 @@ public class AddNewMotor extends javax.swing.JDialog {
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnBatalActionPerformed
-
-    private void txtGambarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGambarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtGambarActionPerformed
-
-    private void txtGambarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGambarKeyReleased
-       tampilGambar(txtGambar.getText());
-    }//GEN-LAST:event_txtGambarKeyReleased
 
     /**
      * @param args the command line arguments
@@ -314,10 +266,7 @@ public class AddNewMotor extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblPreview;
-    private javax.swing.JTextField txtGambar;
     private javax.swing.JTextField txtHarga;
     private javax.swing.JTextField txtHargaBeli;
     private javax.swing.JTextField txtIdMtr;
@@ -340,9 +289,9 @@ public class AddNewMotor extends javax.swing.JDialog {
 
             Connection K = Koneksi.Go();
             String sql = "INSERT INTO motor "
-                    + "(id_motor, merk, tipe, tahun, warna, harga_beli, harga, stok, gambar) "
+                    + "(id_motor, merk, tipe, tahun, warna, harga_beli, harga, stok) "
                     + "VALUES "
-                    + "(?,?,?,?,?,?,?,?,?)";
+                    + "(?,?,?,?,?,?,?,?)";
             PreparedStatement PS = K.prepareStatement(sql);
             PS.setString(1, id_motor);
             PS.setString(2, merk);
@@ -352,7 +301,6 @@ public class AddNewMotor extends javax.swing.JDialog {
             PS.setString(6, harga_beli);
             PS.setString(7, harga);
             PS.setString(8, stok);
-//            PS.setString(9, txtGambar.getText());
             PS.executeUpdate();
 
             ManageMotor.refreshDataMotor("");
@@ -361,37 +309,33 @@ public class AddNewMotor extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
 
         } catch (Exception e) {
-            //error handling
-            System.err.println(""
-                    + "Lokasi: " + getClass() + ""
-                    + "Method: @simpanData()"
-                    + "Error: " + e.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(this, "Error : " + e.getMessage());
         }
     }
     
-    private void tampilGambar(String namaFile) {
-        try {
-             // Cek jika nama file kosong
-            if (namaFile != null && !namaFile.isEmpty()) {
-                // Cari gambar di folder resources
-                java.net.URL urlGambar = getClass().getResource("/img/" + namaFile);
-                
-                if (urlGambar != null) {
-                    javax.swing.ImageIcon iconAsli = new javax.swing.ImageIcon(urlGambar);
-                    java.awt.Image img = iconAsli.getImage();
-                    
-                    // Resize agar pas di kotak lblPreview
-                    java.awt.Image imgSkala = img.getScaledInstance(lblPreview.getWidth(), lblPreview.getHeight(), java.awt.Image.SCALE_SMOOTH);
-                    
-                    lblPreview.setIcon(new javax.swing.ImageIcon(imgSkala));
-                } else {
-                    lblPreview.setIcon(null); // File tidak ditemukan
-                }
-            } else {
-                lblPreview.setIcon(null); // Teks kosong
-            }
-        } catch (Exception e) {
-            // Abaikan error diam-diam
-        }
-    }
+//    private void tampilGambar(String namaFile) {
+//        try {
+//             // Cek jika nama file kosong
+//            if (namaFile != null && !namaFile.isEmpty()) {
+//                // Cari gambar di folder resources
+//                java.net.URL urlGambar = getClass().getResource("/img/" + namaFile);
+//                
+//                if (urlGambar != null) {
+//                    javax.swing.ImageIcon iconAsli = new javax.swing.ImageIcon(urlGambar);
+//                    java.awt.Image img = iconAsli.getImage();
+//                    
+//                    // Resize agar pas di kotak lblPreview
+//                    java.awt.Image imgSkala = img.getScaledInstance(lblPreview.getWidth(), lblPreview.getHeight(), java.awt.Image.SCALE_SMOOTH);
+//                    
+//                    lblPreview.setIcon(new javax.swing.ImageIcon(imgSkala));
+//                } else {
+//                    lblPreview.setIcon(null); // File tidak ditemukan
+//                }
+//            } else {
+//                lblPreview.setIcon(null); // Teks kosong
+//            }
+//        } catch (Exception e) {
+//            // Abaikan error diam-diam
+//        }
+//    }
 }

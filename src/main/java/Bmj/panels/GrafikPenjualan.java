@@ -82,9 +82,9 @@ public class GrafikPenjualan extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(spinnerSampai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(275, 275, 275)
+                .addGap(40, 40, 40)
                 .addComponent(btnCari)
-                .addContainerGap(390, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,9 +115,9 @@ public class GrafikPenjualan extends javax.swing.JPanel {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(299, 299, 299)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 916, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(189, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,9 +128,9 @@ public class GrafikPenjualan extends javax.swing.JPanel {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(239, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -157,7 +157,7 @@ public class GrafikPenjualan extends javax.swing.JPanel {
         pnlGrafik.removeAll();
         pnlGrafik.revalidate();
         pnlGrafik.repaint();
-        
+
         try {
             // Ambil Tanggal dari Spinner
             java.util.Date date1 = (java.util.Date) spinnerMulai.getValue();
@@ -171,62 +171,84 @@ public class GrafikPenjualan extends javax.swing.JPanel {
 
             // --- STEP A: CARI NILAI TERTINGGI (Untuk Skala Grafik) ---
             // Kita butuh tahu hari apa yang omsetnya paling gede biar jadi patokan 100%
-            String sqlMax = "SELECT MAX(total_harian) as top_skor FROM " +
-                            "(SELECT sum(total_harga) as total_harian FROM transaksi " +
-                            "WHERE tanggal BETWEEN '"+tgl1+"' AND '"+tgl2+"' GROUP BY tanggal) as tabel_dummy";
-            
+            String sqlMax = "SELECT MAX(total_harian) as top_skor FROM "
+                    + "(SELECT sum(total_harga) as total_harian FROM transaksi "
+                    + "WHERE tanggal BETWEEN '" + tgl1 + "' AND '" + tgl2 + "' GROUP BY tanggal) as tabel_dummy";
+
             java.sql.ResultSet RMax = S.executeQuery(sqlMax);
             double maxOmset = 1; // Default biar gak error bagi 0
             if (RMax.next()) {
                 maxOmset = RMax.getDouble("top_skor");
             }
-            
+
             // --- STEP B: AMBIL DATA OMSET PER HARI ---
-            String sql = "SELECT tanggal, SUM(total_harga) as omset " +
-                         "FROM transaksi " +
-                         "WHERE tanggal BETWEEN '"+tgl1+"' AND '"+tgl2+"' " +
-                         "GROUP BY tanggal ORDER BY tanggal ASC";
-            
+            String sql = "SELECT tanggal, SUM(total_harga) as omset "
+                    + "FROM transaksi "
+                    + "WHERE tanggal BETWEEN '" + tgl1 + "' AND '" + tgl2 + "' "
+                    + "GROUP BY tanggal ORDER BY tanggal ASC";
+
             java.sql.ResultSet R = S.executeQuery(sql);
 
             // --- STEP C: LUKIS GRAFIK (Looping) ---
             while (R.next()) {
                 String tanggal = R.getString("tanggal");
                 double omset = R.getDouble("omset");
-                
+
                 // Hitung Persentase panjang bar
                 int persentase = (int) ((omset / maxOmset) * 100);
-                
+
                 // Format Uang (Rp ...)
                 String duitStr = String.format("Rp %,.0f", omset).replace(',', '.');
-                
-                // BIKIN KOMPONEN VISUAL SECARA MANUAL (CODING)
+
+                // 1. Panel Baris (Wadah per hari)
                 javax.swing.JPanel panelBaris = new javax.swing.JPanel();
-                panelBaris.setLayout(new java.awt.BorderLayout(10, 10));
+                // Beri jarak vertikal (vgap) 5 pixel antar komponen
+                panelBaris.setLayout(new java.awt.BorderLayout(10, 0));
                 panelBaris.setBackground(java.awt.Color.WHITE);
-                panelBaris.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-                
-                // 1. Label Tanggal (Kiri)
+                // Beri margin luar supaya tidak mepet pinggir
+                panelBaris.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
+                // Pakai PreferredSize untuk tinggi baris biar konsisten (misal tinggi 35px)
+                panelBaris.setPreferredSize(new java.awt.Dimension(0, 35));
+
+                // 2. Label Tanggal (Kiri) -> Kita pertegas fontnya
                 javax.swing.JLabel lblTgl = new javax.swing.JLabel(tanggal);
-                lblTgl.setPreferredSize(new java.awt.Dimension(80, 20)); // Lebar label tanggal
-                
-                // 2. Bar Grafik (Tengah)
+                lblTgl.setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, 12));
+                lblTgl.setPreferredSize(new java.awt.Dimension(90, 20)); // Lebar tetap
+
+                // 3. Bar Grafik (Tengah) -> MODIFIKASI UTAMA
                 javax.swing.JProgressBar bar = new javax.swing.JProgressBar();
-                bar.setValue(persentase); 
-                bar.setString(duitStr); // Tulis nominal uang di dalam bar
-                bar.setStringPainted(true);
-                bar.setForeground(new java.awt.Color(51, 153, 255)); // Warna Biru
-                
+                bar.setValue(persentase);
+
+                // HAPUS TEKS DALAM BAR (Biar bersih)
+                bar.setStringPainted(false);
+
+                // HILANGKAN BORDER (Biar Flat)
+                bar.setBorderPainted(false);
+
+                // WARNA: Ganti biru standar dengan warna modern
+                // Contoh: Hijau Sukses (46, 204, 113) atau Biru Modern (52, 152, 219)
+                bar.setForeground(new java.awt.Color(52, 152, 219));
+                bar.setBackground(new java.awt.Color(230, 230, 230)); // Warna track abu muda banget
+
+                // 4. Label Nominal (Kanan) -> Taruh uang di luar bar
+                javax.swing.JLabel lblDuit = new javax.swing.JLabel(duitStr);
+                lblDuit.setFont(new java.awt.Font("SansSerif", java.awt.Font.PLAIN, 12));
+                lblDuit.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+                lblDuit.setPreferredSize(new java.awt.Dimension(100, 20)); // Lebar tetap buat angka
+
                 // Tambahkan ke Panel Baris
                 panelBaris.add(lblTgl, java.awt.BorderLayout.WEST);
                 panelBaris.add(bar, java.awt.BorderLayout.CENTER);
-                
+                panelBaris.add(lblDuit, java.awt.BorderLayout.EAST); // Uang di kanan
+
                 // Tambahkan Panel Baris ke Panel Utama Grafik
                 pnlGrafik.add(panelBaris);
             }
-            
-            // Update Tampilan biar muncul
-            pnlGrafik.revalidate(); 
+
+// Update layout panel utama
+// Pastikan pnlGrafik menggunakan layout yang menumpuk ke bawah, misal BoxLayout atau GridLayout
+            pnlGrafik.setLayout(new javax.swing.BoxLayout(pnlGrafik, javax.swing.BoxLayout.Y_AXIS));
+            pnlGrafik.revalidate();
             pnlGrafik.repaint();
 
         } catch (Exception e) {

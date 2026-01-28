@@ -81,9 +81,9 @@
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="spinnerSampai" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="275" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   <Component id="btnCari" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="390" max="32767" attributes="0"/>
+                  <EmptySpace pref="621" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

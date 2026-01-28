@@ -147,6 +147,7 @@ public class AddNewUser extends javax.swing.JDialog {
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcomJabatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomJabatanActionPerformed
