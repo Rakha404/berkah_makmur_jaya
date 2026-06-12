@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package paneltidakterpakai;
+package PanelAdmin;
 
 /**
  *
@@ -41,12 +41,12 @@ public class Absensi extends javax.swing.JPanel {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblRFID.setText("jLabel1");
-        jPanel1.add(lblRFID, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 36, -1, -1));
+        lblRFID.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icon/card2.png"))); // NOI18N
+        jPanel1.add(lblRFID, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 100, 120));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Tempel kartu atau ketikan RFID");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 204));
 
@@ -90,14 +90,15 @@ public class Absensi extends javax.swing.JPanel {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAutoRefresh))
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 216, -1, 454));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, 280));
 
         txtInputRFID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtInputRFID.setText("Masukkan RFID");
-        jPanel1.add(txtInputRFID, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 155, 591, -1));
+        jPanel1.add(txtInputRFID, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 591, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -107,7 +108,7 @@ public class Absensi extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
