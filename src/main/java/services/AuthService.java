@@ -28,9 +28,9 @@ public class AuthService {
      *
      * @param username
      * @param plainPassword
-     * @param loginPage
+     * @param login
      */
-    public void login(String username, String plainPassword, Login loginPage) {
+    public void login(String username, String plainPassword, Login login) {
         // 1. Mengubah password input menjadi hash SHA-256 untuk keamanan [2]
         String hashedInput = Security.getHash(plainPassword, Security.SHA_256);
 
@@ -52,7 +52,7 @@ public class AuthService {
             admPage.setLocationRelativeTo(null); 
             admPage.setVisible(true);
             admPage.setExtendedState(Frame.MAXIMIZED_BOTH); 
-            loginPage.setVisible(false); 
+            login.setVisible(false); 
         } else {
             // Gagal: Notifikasi Error
             JOptionPane.showMessageDialog(null,
